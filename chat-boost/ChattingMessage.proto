@@ -1,0 +1,11 @@
+syntax = "proto3";
+package shelby.chat.proto3;
+
+message SimpleChattingMessage
+{
+	string content = 1;
+	int32 owner_id = 2;
+	int32 result = 3;
+}
+
+// 다음에 계속 추가 ..
