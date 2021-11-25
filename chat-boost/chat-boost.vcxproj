@@ -79,7 +79,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -118,13 +119,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%SDK_DIR%\boost_1_77_0;%SDK_DIR%\MySQL_CXX\include\jdbc;%PROTOBUF_DIR%\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%SDK_DIR%\boost_1_77_0;%PROTOBUF_DIR%\include;%SDK_DIR%\mysql\include;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%SDK_DIR%\boost_1_77_0\stage\lib;C:\SDK\MySQL_CXX\lib64\vs14;C:\SDK\vcpkg\packages\protobuf_x64-windows\debug\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);mysqlcppconn.lib;libprotobufd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%SDK_DIR%\boost_1_77_0\stage\lib;C:\SDK\vcpkg\packages\protobuf_x64-windows\debug\lib;%SDK_DIR%\mysql\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);libprotobufd.lib;libmysql.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ChattingMessage.pb.h" />
+    <ClInclude Include="HttpConnection.h" />
     <ClInclude Include="ServerChatInstance.h" />
     <ClInclude Include="TcpConnection.h" />
   </ItemGroup>
@@ -152,6 +155,7 @@
     <ClCompile Include="ChattingMessage.pb.cc" />
     <ClCompile Include="MySQLTestMain.cpp" />
     <ClCompile Include="ProtobufTestMain.cpp" />
+    <ClCompile Include="RESTAuthTestMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ChattingMessage.proto" />
