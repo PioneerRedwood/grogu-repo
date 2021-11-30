@@ -27,6 +27,12 @@
     <ClInclude Include="HttpConnection.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ClientConnection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerConnection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProtobufTestMain.cpp">
@@ -39,6 +45,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="RESTAuthTestMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpConnection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientConnection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerConnection.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
