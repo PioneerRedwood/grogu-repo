@@ -121,6 +121,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>%SDK_DIR%\boost_1_77_0;%PROTOBUF_DIR%\include;%SDK_DIR%\mysql\include;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,6 +153,7 @@
     <ClInclude Include="ServerChatInstance.h" />
     <ClInclude Include="ServerConnection.h" />
     <ClInclude Include="TcpConnection.h" />
+    <ClInclude Include="TSDeque.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChattingMessage.pb.cc" />
@@ -161,6 +163,7 @@
     <ClCompile Include="RESTAuthTestMain.cpp" />
     <ClCompile Include="ServerConnection.cpp" />
     <ClCompile Include="TcpConnection.cpp" />
+    <ClCompile Include="TSDeque-test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ChattingMessage.proto" />

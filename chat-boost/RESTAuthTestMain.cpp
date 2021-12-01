@@ -1,6 +1,6 @@
 #include "HttpConnection.h"
 
-int main()
+int RESTful_API_auth_main()
 {
 	http::response<http::dynamic_body> response;
 	HttpConnection::GetRequest("/lobby/search/all", response);
