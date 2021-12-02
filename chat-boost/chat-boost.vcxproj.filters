@@ -18,9 +18,6 @@
     <ClInclude Include="TcpConnection.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ServerChatInstance.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ChattingMessage.pb.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -34,6 +31,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="TSDeque.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleChatServer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,7 +59,13 @@
     <ClCompile Include="ServerConnection.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TSDeque-test.cpp">
+    <ClCompile Include="TSDeque.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleChatServer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2021_12_02_SERVER_MAIN.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,8 +2,8 @@
 
 namespace chat{
 
-ServerConnection::ServerConnection(asio::io_context& context, TSDeque<SimpleMessage>& read_deque)
-	: TcpConnection(context, read_deque), context_(context), read_deque_(read_deque)
+ServerConnection::ServerConnection(asio::io_context& context)
+	: TcpConnection(context, read_deque_), context_(context)
 {
 
 }
@@ -15,7 +15,6 @@ void ServerConnection::Start()
 
 void ServerConnection::Send(const SimpleMessage& msg)
 {
-	// TODO: start accept and read
 	asio::post(context_, write_strand_.wrap([&, msg]()->void
 		{
 			bool isWriting = !write_deque_.empty();

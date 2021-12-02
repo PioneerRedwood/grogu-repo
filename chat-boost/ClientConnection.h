@@ -1,5 +1,7 @@
 #pragma once
 #include "TcpConnection.h"
+#include "TSDeque.h"
+#include "ChattingMessage.pb.h"
 
 namespace chat {
 // TODO: Depends on how many handle the messages received from the server
@@ -8,20 +10,24 @@ class ClientConnection : public TcpConnection
 {
 public:
 	// TODO: required connection ip, port
-	ClientConnection(boost::asio::io_context& context, const std::string& ip, const int port)
-		: TcpConnection(context), ip_(ip), port_(port) {}
+	ClientConnection(asio::io_context& context);
 
-	bool Start() override;
+	void Start(const std::string& ip, const int port);
 
 	// TODO: Send data to server
-	template<typename T>
-	int Send(T data);
+	void Send(const SimpleMessage& msg);
 
 private:
-	void Connect();
+	void Connect(const std::string& ip, const int port);
+
+	void Ping();
 
 private:
-	const std::string& ip_;
-	int port_;
+	asio::io_context& context_;
+	asio::steady_timer ping_timer_;
+	//tsdeque read_deque_;
+	TSDeque<SimpleMessage> read_deque_;
+
+
 };
 }

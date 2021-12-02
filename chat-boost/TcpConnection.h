@@ -2,7 +2,7 @@
 Developing Daily Record
 2021-12-01
 	Currently, it is not strictly enforced 
-	at handling an errors in Read() / Write().
+	handling an errors in Read() / Write().
 */
 
 #pragma once
@@ -21,7 +21,8 @@ class TcpConnection
 	: std::enable_shared_from_this<TcpConnection>
 {
 protected:
-	TcpConnection(boost::asio::io_context& context, TSDeque<SimpleMessage>& read_deque);
+	TcpConnection(asio::io_context& context, TSDeque<SimpleMessage>& read_deque);
+	//TcpConnection(asio::io_context& context, tsdeque& read_deque);
 
 protected:
 	void Read();
@@ -42,5 +43,7 @@ protected:
 	SimpleMessage temp_;
 	TSDeque<SimpleMessage>& read_deque_;
 	TSDeque<SimpleMessage> write_deque_;
+	//tsdeque& read_deque_;
+	//tsdeque write_deque_;
 };
 }

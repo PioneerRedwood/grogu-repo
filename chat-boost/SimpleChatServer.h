@@ -6,7 +6,7 @@ namespace chat {
 class SimpleChatServer
 {
 public:
-	SimpleChatServer(asio::io_context& context, const int port);
+	explicit SimpleChatServer(asio::io_context& context, const int port);
 
 	void Start();
 	

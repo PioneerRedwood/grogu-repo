@@ -20,7 +20,7 @@ void SimpleChatServer::Accept()
 {
 	// TODO: Accept new connection from the client
 	acceptor_.async_accept(endpoint_,
-		[&](std::error_code& error, asio::ip::tcp::socket socket)
+		[&](auto& error, asio::ip::tcp::socket socket)
 		{
 			// Handle if error occured
 
@@ -32,7 +32,7 @@ void SimpleChatServer::Accept()
 			// make shared_ptr of client
 			std::shared_ptr<ServerConnection> conn =
 				std::make_shared<ServerConnection>(
-					context_, std::move(socket));
+					context_);
 
 			// store client to proper data structure
 			conn->Start();
