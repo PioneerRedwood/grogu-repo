@@ -21,8 +21,10 @@ class TcpConnection
 	: std::enable_shared_from_this<TcpConnection>
 {
 protected:
-	TcpConnection(asio::io_context& context, TSDeque<SimpleMessage>& read_deque);
-	//TcpConnection(asio::io_context& context, tsdeque& read_deque);
+	TcpConnection(
+		asio::io_context& context, 
+		TSDeque<SimpleMessage>& read_deque, 
+		asio::ip::tcp::socket socket);
 
 protected:
 	void Read();
@@ -43,7 +45,5 @@ protected:
 	SimpleMessage temp_;
 	TSDeque<SimpleMessage>& read_deque_;
 	TSDeque<SimpleMessage> write_deque_;
-	//tsdeque& read_deque_;
-	//tsdeque write_deque_;
 };
 }

@@ -8,4 +8,15 @@ message SimpleChattingMessage
 	int32 result = 3;
 }
 
+message SimpleHeader
+{
+	uint32 id = 1;
+	uint32 size = 2;
+}
+
+message SimpleMessage
+{
+	string content = 1;
+}
+
 // 다음에 계속 추가 ..

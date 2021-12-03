@@ -22,7 +22,7 @@ public:
 	TSDeque() = default;
 	TSDeque(const TSDeque<T>&) = delete;
 	virtual ~TSDeque() { clear(); }
-
+	/*
 	const T& front();
 
 	const T& back();
@@ -40,5 +40,71 @@ public:
 	void clear();
 
 	void wait();
+
+	*/
+
+	const T& front()
+	{
+		std::scoped_lock lock(mutex_);
+		return deque_.front();
+	}
+
+	const T& back()
+	{
+		std::scoped_lock lock(mutex_);
+		return deque_.back();
+	}
+
+	T pop_front()
+	{
+		std::scoped_lock(mutex_);
+		auto t = move(deque_.front());
+		deque_.pop_front();
+		return t;
+	}
+
+	T pop_back()
+	{
+		std::scoped_lock(mutex_);
+		auto t = std::move(deque_.back());
+		deque_.pop_back();
+		return t;
+	}
+
+	void push_back(const T& item)
+	{
+		std::scoped_lock lock(mutex_);
+		deque_.emplace_back(move(item));
+
+		std::unique_lock<mutex> ul(mutex_block_);
+		condition_.notify_one();
+	}
+
+	bool empty()
+	{
+		std::scoped_lock lock(mutex_);
+		return deque_.empty();
+	}
+
+	size_t size()
+	{
+		std::scoped_lock lock(mutex_);
+		return deque_.size();
+	}
+
+	void clear()
+	{
+		std::scoped_lock lock(mutex_);
+		deque_.clear();
+	}
+
+	void wait()
+	{
+		while (empty())
+		{
+			std::unique_lock<mutex> ul(mutex_block_);
+			condition_.wait(ul);
+		}
+	}
 };
 }

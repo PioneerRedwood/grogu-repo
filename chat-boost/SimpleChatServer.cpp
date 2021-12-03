@@ -1,28 +1,51 @@
 #include "SimpleChatServer.h"
+#include "MessageWrapper.h"
 
 namespace chat {
-SimpleChatServer::SimpleChatServer(asio::io_context& context, const int port)
-	: context_(context), acceptor_(context), 
-	endpoint_(asio::ip::make_address("127.0.0.1"), port), accept_strand_(context)
+SimpleChatServer::SimpleChatServer(
+	asio::io_context& context, const int port, const uint16_t period)
+	: context_(context), 
+	acceptor_{ context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port)},
+	accept_strand_(context), update_timer_(context, std::chrono::seconds(period)), update_period_(period)
 {
 
 }
 
 void SimpleChatServer::Start()
 {
-	// TODO: Start accept client
-
 	std::cout << "SimpleChatServer started ..\n";
+
 	Accept();
+	TimerUpdate();
+
+	thr_ = thread([&]()->void { context_.run(); });
+}
+
+void SimpleChatServer::Tick(size_t max_msg, bool is_wait)
+{
+	/*size_t count = 0;
+	while ((count < max_msg_) && !read_deque_.empty())
+	{
+		auto temp = read_deque_.pop_front();
+
+		OnMessage(temp);
+
+		count++;
+	}*/
 }
 
 void SimpleChatServer::Accept()
 {
 	// TODO: Accept new connection from the client
-	acceptor_.async_accept(endpoint_,
-		[&](auto& error, asio::ip::tcp::socket socket)
+	acceptor_.async_accept(
+		[this](auto& error, asio::ip::tcp::socket socket)
 		{
 			// Handle if error occured
+			if (error)
+			{
+				cerr << "Error: SimpleChatServer accept.. " << error << "\n";
+				return;
+			}
 
 			// connected client info print
 			std::stringstream ss;
@@ -30,13 +53,78 @@ void SimpleChatServer::Accept()
 			cout << "Connected " << ss.str() << "\n";
 
 			// make shared_ptr of client
-			std::shared_ptr<ServerConnection> conn =
+			conn_ptr conn =
 				std::make_shared<ServerConnection>(
-					context_);
-
-			// store client to proper data structure
+					context_, read_deque_, std::move(socket));
 			conn->Start();
+
+			curr_id_++;
+			//clients_.insert(curr_id_, ConnectionInfo(curr_id_, conn));
+			clients_.emplace(curr_id_, ConnectionInfo(curr_id_, std::move(conn)));
+
+			/*
+			SimpleMessage msg;
+			msg.set_content("Hello client");
+			msg.set_owner_id(SERVER_ID);
+			msg.set_result(curr_id_);
+
+			ShowPrettyMessage(msg);
+
+			clients_[curr_id_].ptr->Send(std::move(msg));
+			*/
+
 			Accept();
+
 		});
 }
+
+void SimpleChatServer::TimerUpdate()
+{
+	update_timer_.expires_at(update_timer_.expiry() + std::chrono::seconds(update_period_));
+	update_timer_.async_wait(
+		[this](auto& error)->void
+		{
+			if (error)
+			{
+				return;
+			}
+
+			cout << "This is server Update()\n";
+
+			if (!clients_.empty())
+			{
+				for (const auto& client : clients_)
+				{
+					SimpleMessage msg;
+					msg.set_content("Server Update to #" + std::to_string(client.second.id) + " Client");
+					msg.set_owner_id(SERVER_ID);
+					msg.set_result(client.second.id);
+
+					ShowPrettyMessage(msg);
+
+					client.second.ptr->Send(std::move(msg));
+				}
+			}
+
+			TimerUpdate();
+		});
+}
+
+void SimpleChatServer::OnConnect(conn_ptr client, uint32_t id)
+{
+	cout << "OnConnect ..\n";
+	
+
+}
+
+void SimpleChatServer::OnDisconnect(conn_ptr client)
+{
+	cout << "OnDisConnect ..\n";
+}
+
+void SimpleChatServer::OnMessage(const SimpleMessage& msg)
+{
+	
+}
+
 }

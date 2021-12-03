@@ -46,7 +46,7 @@ struct TableStruct_ChattingMessage_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,11 +59,19 @@ namespace proto3 {
 class SimpleChattingMessage;
 struct SimpleChattingMessageDefaultTypeInternal;
 extern SimpleChattingMessageDefaultTypeInternal _SimpleChattingMessage_default_instance_;
+class SimpleHeader;
+struct SimpleHeaderDefaultTypeInternal;
+extern SimpleHeaderDefaultTypeInternal _SimpleHeader_default_instance_;
+class SimpleMessage;
+struct SimpleMessageDefaultTypeInternal;
+extern SimpleMessageDefaultTypeInternal _SimpleMessage_default_instance_;
 }  // namespace proto3
 }  // namespace chat
 }  // namespace shelby
 PROTOBUF_NAMESPACE_OPEN
 template<> ::shelby::chat::proto3::SimpleChattingMessage* Arena::CreateMaybeMessage<::shelby::chat::proto3::SimpleChattingMessage>(Arena*);
+template<> ::shelby::chat::proto3::SimpleHeader* Arena::CreateMaybeMessage<::shelby::chat::proto3::SimpleHeader>(Arena*);
+template<> ::shelby::chat::proto3::SimpleMessage* Arena::CreateMaybeMessage<::shelby::chat::proto3::SimpleMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace shelby {
 namespace chat {
@@ -239,6 +247,308 @@ class SimpleChattingMessage final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_ChattingMessage_2eproto;
 };
+// -------------------------------------------------------------------
+
+class SimpleHeader final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shelby.chat.proto3.SimpleHeader) */ {
+ public:
+  inline SimpleHeader() : SimpleHeader(nullptr) {}
+  ~SimpleHeader() override;
+  explicit constexpr SimpleHeader(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SimpleHeader(const SimpleHeader& from);
+  SimpleHeader(SimpleHeader&& from) noexcept
+    : SimpleHeader() {
+    *this = ::std::move(from);
+  }
+
+  inline SimpleHeader& operator=(const SimpleHeader& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SimpleHeader& operator=(SimpleHeader&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SimpleHeader& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SimpleHeader* internal_default_instance() {
+    return reinterpret_cast<const SimpleHeader*>(
+               &_SimpleHeader_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(SimpleHeader& a, SimpleHeader& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SimpleHeader* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SimpleHeader* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SimpleHeader* New() const final {
+    return new SimpleHeader();
+  }
+
+  SimpleHeader* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SimpleHeader>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SimpleHeader& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SimpleHeader& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SimpleHeader* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "shelby.chat.proto3.SimpleHeader";
+  }
+  protected:
+  explicit SimpleHeader(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kSizeFieldNumber = 2,
+  };
+  // uint32 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 size = 2;
+  void clear_size();
+  ::PROTOBUF_NAMESPACE_ID::uint32 size() const;
+  void set_size(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_size() const;
+  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:shelby.chat.proto3.SimpleHeader)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 id_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_ChattingMessage_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SimpleMessage final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shelby.chat.proto3.SimpleMessage) */ {
+ public:
+  inline SimpleMessage() : SimpleMessage(nullptr) {}
+  ~SimpleMessage() override;
+  explicit constexpr SimpleMessage(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SimpleMessage(const SimpleMessage& from);
+  SimpleMessage(SimpleMessage&& from) noexcept
+    : SimpleMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline SimpleMessage& operator=(const SimpleMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SimpleMessage& operator=(SimpleMessage&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SimpleMessage& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SimpleMessage* internal_default_instance() {
+    return reinterpret_cast<const SimpleMessage*>(
+               &_SimpleMessage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(SimpleMessage& a, SimpleMessage& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SimpleMessage* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SimpleMessage* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SimpleMessage* New() const final {
+    return new SimpleMessage();
+  }
+
+  SimpleMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SimpleMessage>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SimpleMessage& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SimpleMessage& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SimpleMessage* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "shelby.chat.proto3.SimpleMessage";
+  }
+  protected:
+  explicit SimpleMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContentFieldNumber = 1,
+  };
+  // string content = 1;
+  void clear_content();
+  const std::string& content() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_content(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_content();
+  PROTOBUF_MUST_USE_RESULT std::string* release_content();
+  void set_allocated_content(std::string* content);
+  private:
+  const std::string& _internal_content() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content(const std::string& value);
+  std::string* _internal_mutable_content();
+  public:
+
+  // @@protoc_insertion_point(class_scope:shelby.chat.proto3.SimpleMessage)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_ChattingMessage_2eproto;
+};
 // ===================================================================
 
 
@@ -336,9 +646,107 @@ inline void SimpleChattingMessage::set_result(::PROTOBUF_NAMESPACE_ID::int32 val
   // @@protoc_insertion_point(field_set:shelby.chat.proto3.SimpleChattingMessage.result)
 }
 
+// -------------------------------------------------------------------
+
+// SimpleHeader
+
+// uint32 id = 1;
+inline void SimpleHeader::clear_id() {
+  id_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 SimpleHeader::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 SimpleHeader::id() const {
+  // @@protoc_insertion_point(field_get:shelby.chat.proto3.SimpleHeader.id)
+  return _internal_id();
+}
+inline void SimpleHeader::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  id_ = value;
+}
+inline void SimpleHeader::set_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:shelby.chat.proto3.SimpleHeader.id)
+}
+
+// uint32 size = 2;
+inline void SimpleHeader::clear_size() {
+  size_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 SimpleHeader::_internal_size() const {
+  return size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 SimpleHeader::size() const {
+  // @@protoc_insertion_point(field_get:shelby.chat.proto3.SimpleHeader.size)
+  return _internal_size();
+}
+inline void SimpleHeader::_internal_set_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  size_ = value;
+}
+inline void SimpleHeader::set_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:shelby.chat.proto3.SimpleHeader.size)
+}
+
+// -------------------------------------------------------------------
+
+// SimpleMessage
+
+// string content = 1;
+inline void SimpleMessage::clear_content() {
+  content_.ClearToEmpty();
+}
+inline const std::string& SimpleMessage::content() const {
+  // @@protoc_insertion_point(field_get:shelby.chat.proto3.SimpleMessage.content)
+  return _internal_content();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SimpleMessage::set_content(ArgT0&& arg0, ArgT... args) {
+ 
+ content_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:shelby.chat.proto3.SimpleMessage.content)
+}
+inline std::string* SimpleMessage::mutable_content() {
+  std::string* _s = _internal_mutable_content();
+  // @@protoc_insertion_point(field_mutable:shelby.chat.proto3.SimpleMessage.content)
+  return _s;
+}
+inline const std::string& SimpleMessage::_internal_content() const {
+  return content_.Get();
+}
+inline void SimpleMessage::_internal_set_content(const std::string& value) {
+  
+  content_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* SimpleMessage::_internal_mutable_content() {
+  
+  return content_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* SimpleMessage::release_content() {
+  // @@protoc_insertion_point(field_release:shelby.chat.proto3.SimpleMessage.content)
+  return content_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void SimpleMessage::set_allocated_content(std::string* content) {
+  if (content != nullptr) {
+    
+  } else {
+    
+  }
+  content_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), content,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:shelby.chat.proto3.SimpleMessage.content)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

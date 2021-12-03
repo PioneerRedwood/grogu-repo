@@ -33,10 +33,35 @@ struct SimpleChattingMessageDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SimpleChattingMessageDefaultTypeInternal _SimpleChattingMessage_default_instance_;
+constexpr SimpleHeader::SimpleHeader(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(0u)
+  , size_(0u){}
+struct SimpleHeaderDefaultTypeInternal {
+  constexpr SimpleHeaderDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~SimpleHeaderDefaultTypeInternal() {}
+  union {
+    SimpleHeader _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SimpleHeaderDefaultTypeInternal _SimpleHeader_default_instance_;
+constexpr SimpleMessage::SimpleMessage(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : content_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct SimpleMessageDefaultTypeInternal {
+  constexpr SimpleMessageDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~SimpleMessageDefaultTypeInternal() {}
+  union {
+    SimpleMessage _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SimpleMessageDefaultTypeInternal _SimpleMessage_default_instance_;
 }  // namespace proto3
 }  // namespace chat
 }  // namespace shelby
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_ChattingMessage_2eproto[1];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_ChattingMessage_2eproto[3];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_ChattingMessage_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_ChattingMessage_2eproto = nullptr;
 
@@ -50,25 +75,46 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ChattingMessage_2eproto::offse
   PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleChattingMessage, content_),
   PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleChattingMessage, owner_id_),
   PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleChattingMessage, result_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleHeader, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleHeader, id_),
+  PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleHeader, size_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleMessage, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::shelby::chat::proto3::SimpleMessage, content_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::shelby::chat::proto3::SimpleChattingMessage)},
+  { 9, -1, -1, sizeof(::shelby::chat::proto3::SimpleHeader)},
+  { 17, -1, -1, sizeof(::shelby::chat::proto3::SimpleMessage)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shelby::chat::proto3::_SimpleChattingMessage_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shelby::chat::proto3::_SimpleHeader_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shelby::chat::proto3::_SimpleMessage_default_instance_),
 };
 
 const char descriptor_table_protodef_ChattingMessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\025ChattingMessage.proto\022\022shelby.chat.pro"
   "to3\"J\n\025SimpleChattingMessage\022\017\n\007content\030"
-  "\001 \001(\t\022\020\n\010owner_id\030\002 \001(\005\022\016\n\006result\030\003 \001(\005b"
-  "\006proto3"
+  "\001 \001(\t\022\020\n\010owner_id\030\002 \001(\005\022\016\n\006result\030\003 \001(\005\""
+  "(\n\014SimpleHeader\022\n\n\002id\030\001 \001(\r\022\014\n\004size\030\002 \001("
+  "\r\" \n\rSimpleMessage\022\017\n\007content\030\001 \001(\tb\006pro"
+  "to3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_ChattingMessage_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_ChattingMessage_2eproto = {
-  false, false, 127, descriptor_table_protodef_ChattingMessage_2eproto, "ChattingMessage.proto", 
-  &descriptor_table_ChattingMessage_2eproto_once, nullptr, 0, 1,
+  false, false, 203, descriptor_table_protodef_ChattingMessage_2eproto, "ChattingMessage.proto", 
+  &descriptor_table_ChattingMessage_2eproto_once, nullptr, 0, 3,
   schemas, file_default_instances, TableStruct_ChattingMessage_2eproto::offsets,
   file_level_metadata_ChattingMessage_2eproto, file_level_enum_descriptors_ChattingMessage_2eproto, file_level_service_descriptors_ChattingMessage_2eproto,
 };
@@ -339,6 +385,415 @@ void SimpleChattingMessage::InternalSwap(SimpleChattingMessage* other) {
       file_level_metadata_ChattingMessage_2eproto[0]);
 }
 
+// ===================================================================
+
+class SimpleHeader::_Internal {
+ public:
+};
+
+SimpleHeader::SimpleHeader(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:shelby.chat.proto3.SimpleHeader)
+}
+SimpleHeader::SimpleHeader(const SimpleHeader& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&id_, &from.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&size_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(size_));
+  // @@protoc_insertion_point(copy_constructor:shelby.chat.proto3.SimpleHeader)
+}
+
+void SimpleHeader::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&id_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&size_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(size_));
+}
+
+SimpleHeader::~SimpleHeader() {
+  // @@protoc_insertion_point(destructor:shelby.chat.proto3.SimpleHeader)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void SimpleHeader::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void SimpleHeader::ArenaDtor(void* object) {
+  SimpleHeader* _this = reinterpret_cast< SimpleHeader* >(object);
+  (void)_this;
+}
+void SimpleHeader::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void SimpleHeader::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SimpleHeader::Clear() {
+// @@protoc_insertion_point(message_clear_start:shelby.chat.proto3.SimpleHeader)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&size_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(size_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SimpleHeader::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint32 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 size = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SimpleHeader::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:shelby.chat.proto3.SimpleHeader)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_id(), target);
+  }
+
+  // uint32 size = 2;
+  if (this->_internal_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_size(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:shelby.chat.proto3.SimpleHeader)
+  return target;
+}
+
+size_t SimpleHeader::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:shelby.chat.proto3.SimpleHeader)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_id());
+  }
+
+  // uint32 size = 2;
+  if (this->_internal_size() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_size());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SimpleHeader::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SimpleHeader::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SimpleHeader::GetClassData() const { return &_class_data_; }
+
+void SimpleHeader::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SimpleHeader *>(to)->MergeFrom(
+      static_cast<const SimpleHeader &>(from));
+}
+
+
+void SimpleHeader::MergeFrom(const SimpleHeader& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:shelby.chat.proto3.SimpleHeader)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_id() != 0) {
+    _internal_set_id(from._internal_id());
+  }
+  if (from._internal_size() != 0) {
+    _internal_set_size(from._internal_size());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SimpleHeader::CopyFrom(const SimpleHeader& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:shelby.chat.proto3.SimpleHeader)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SimpleHeader::IsInitialized() const {
+  return true;
+}
+
+void SimpleHeader::InternalSwap(SimpleHeader* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SimpleHeader, size_)
+      + sizeof(SimpleHeader::size_)
+      - PROTOBUF_FIELD_OFFSET(SimpleHeader, id_)>(
+          reinterpret_cast<char*>(&id_),
+          reinterpret_cast<char*>(&other->id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SimpleHeader::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_ChattingMessage_2eproto_getter, &descriptor_table_ChattingMessage_2eproto_once,
+      file_level_metadata_ChattingMessage_2eproto[1]);
+}
+
+// ===================================================================
+
+class SimpleMessage::_Internal {
+ public:
+};
+
+SimpleMessage::SimpleMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:shelby.chat.proto3.SimpleMessage)
+}
+SimpleMessage::SimpleMessage(const SimpleMessage& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  content_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_content().empty()) {
+    content_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_content(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:shelby.chat.proto3.SimpleMessage)
+}
+
+void SimpleMessage::SharedCtor() {
+content_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+SimpleMessage::~SimpleMessage() {
+  // @@protoc_insertion_point(destructor:shelby.chat.proto3.SimpleMessage)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void SimpleMessage::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  content_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void SimpleMessage::ArenaDtor(void* object) {
+  SimpleMessage* _this = reinterpret_cast< SimpleMessage* >(object);
+  (void)_this;
+}
+void SimpleMessage::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void SimpleMessage::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SimpleMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:shelby.chat.proto3.SimpleMessage)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  content_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SimpleMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string content = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_content();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "shelby.chat.proto3.SimpleMessage.content"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SimpleMessage::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:shelby.chat.proto3.SimpleMessage)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string content = 1;
+  if (!this->_internal_content().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_content().data(), static_cast<int>(this->_internal_content().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "shelby.chat.proto3.SimpleMessage.content");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_content(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:shelby.chat.proto3.SimpleMessage)
+  return target;
+}
+
+size_t SimpleMessage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:shelby.chat.proto3.SimpleMessage)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string content = 1;
+  if (!this->_internal_content().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_content());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SimpleMessage::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SimpleMessage::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SimpleMessage::GetClassData() const { return &_class_data_; }
+
+void SimpleMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SimpleMessage *>(to)->MergeFrom(
+      static_cast<const SimpleMessage &>(from));
+}
+
+
+void SimpleMessage::MergeFrom(const SimpleMessage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:shelby.chat.proto3.SimpleMessage)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_content().empty()) {
+    _internal_set_content(from._internal_content());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SimpleMessage::CopyFrom(const SimpleMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:shelby.chat.proto3.SimpleMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SimpleMessage::IsInitialized() const {
+  return true;
+}
+
+void SimpleMessage::InternalSwap(SimpleMessage* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &content_, lhs_arena,
+      &other->content_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SimpleMessage::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_ChattingMessage_2eproto_getter, &descriptor_table_ChattingMessage_2eproto_once,
+      file_level_metadata_ChattingMessage_2eproto[2]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace proto3
 }  // namespace chat
@@ -346,6 +801,12 @@ void SimpleChattingMessage::InternalSwap(SimpleChattingMessage* other) {
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::shelby::chat::proto3::SimpleChattingMessage* Arena::CreateMaybeMessage< ::shelby::chat::proto3::SimpleChattingMessage >(Arena* arena) {
   return Arena::CreateMessageInternal< ::shelby::chat::proto3::SimpleChattingMessage >(arena);
+}
+template<> PROTOBUF_NOINLINE ::shelby::chat::proto3::SimpleHeader* Arena::CreateMaybeMessage< ::shelby::chat::proto3::SimpleHeader >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::shelby::chat::proto3::SimpleHeader >(arena);
+}
+template<> PROTOBUF_NOINLINE ::shelby::chat::proto3::SimpleMessage* Arena::CreateMaybeMessage< ::shelby::chat::proto3::SimpleMessage >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::shelby::chat::proto3::SimpleMessage >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

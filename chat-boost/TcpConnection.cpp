@@ -1,10 +1,10 @@
 #include "TcpConnection.h"
+#include "MessageWrapper.h"
 
 namespace chat {
 TcpConnection::TcpConnection(
-	asio::io_context& context, TSDeque<SimpleMessage>& read_deque)
-	//asio::io_context& context, tsdeque& read_deque)
-	: context_(context), socket_(context), 
+	asio::io_context& context, TSDeque<SimpleMessage>& read_deque, asio::ip::tcp::socket socket)
+	: context_(context), socket_(std::move(socket)), 
 	read_strand_(context), write_strand_(context), read_deque_(read_deque)
 {
 
@@ -18,16 +18,14 @@ void TcpConnection::Read()
 			read_strand_.wrap([&](auto& error, size_t bytes)->void
 				{
 					// Handle error
-					
-					// Serialize and print into console
-					auto show_msg = [](SimpleMessage& msg)->void {
-						std::cout << "Serialize SimpleMessage to Console: "
-							<< "[content: " << msg.content() << "]"
-							<< "[owner_id: " << msg.owner_id() << "]"
-							<< "[result: " << msg.result() << "]\n";
-					};
-					show_msg(temp_);
+					if (error)
+					{
+						cerr << "Error: read " << error << "\n";
+						return;
+					}
 
+					ShowPrettyMessage(temp_);
+					
 					// AND if this is important to keep on read_deque_? Store() ..!
 					Store();
 				}));
@@ -42,11 +40,16 @@ void TcpConnection::Write()
 		write_strand_.wrap([&](auto& error, size_t bytes)->void 
 			{
 				// Handle error
-				write_deque_.pop_front();
+				if (error)
+				{
+					cerr << "Error: read " << error << "\n";
+					return;
+				}
 
 				// if there are more data to send? Call Write again
 				if (!write_deque_.empty())
 				{
+					write_deque_.pop_front();
 					Write();
 				}
 			}));
