@@ -1,11 +1,10 @@
 #include "SimpleChatServer.h"
-#include "MessageWrapper.h"
 
 namespace chat {
 SimpleChatServer::SimpleChatServer(
-	asio::io_context& context, const int port, const uint16_t period)
+	boost::asio::io_context& context, const int port, const uint16_t period)
 	: context_(context), 
-	acceptor_{ context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port)},
+	acceptor_{ context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)},
 	accept_strand_(context), update_timer_(context, std::chrono::seconds(period)), update_period_(period)
 {
 
@@ -38,7 +37,7 @@ void SimpleChatServer::Accept()
 {
 	// TODO: Accept new connection from the client
 	acceptor_.async_accept(
-		[this](auto& error, asio::ip::tcp::socket socket)
+		[this](auto& error, boost::asio::ip::tcp::socket socket)
 		{
 			// Handle if error occured
 			if (error)
@@ -59,7 +58,6 @@ void SimpleChatServer::Accept()
 			conn->Start();
 
 			curr_id_++;
-			//clients_.insert(curr_id_, ConnectionInfo(curr_id_, conn));
 			clients_.emplace(curr_id_, ConnectionInfo(curr_id_, std::move(conn)));
 
 			/*
@@ -72,6 +70,7 @@ void SimpleChatServer::Accept()
 
 			clients_[curr_id_].ptr->Send(std::move(msg));
 			*/
+			//SetMessage()
 
 			Accept();
 
@@ -89,20 +88,16 @@ void SimpleChatServer::TimerUpdate()
 				return;
 			}
 
-			cout << "This is server Update()\n";
+			cout << "Server Update ..\n";
 
 			if (!clients_.empty())
 			{
 				for (const auto& client : clients_)
 				{
-					SimpleMessage msg;
-					msg.set_content("Server Update to #" + std::to_string(client.second.id) + " Client");
-					msg.set_owner_id(SERVER_ID);
-					msg.set_result(client.second.id);
+					//CreateMessage(temp_, SERVER_ID, 
+					//	"Server Update to #" + std::to_string(client.second.id) + " Client");
 
-					ShowPrettyMessage(msg);
-
-					client.second.ptr->Send(std::move(msg));
+					//client.second.ptr->Send();
 				}
 			}
 
@@ -113,8 +108,6 @@ void SimpleChatServer::TimerUpdate()
 void SimpleChatServer::OnConnect(conn_ptr client, uint32_t id)
 {
 	cout << "OnConnect ..\n";
-	
-
 }
 
 void SimpleChatServer::OnDisconnect(conn_ptr client)
@@ -122,7 +115,7 @@ void SimpleChatServer::OnDisconnect(conn_ptr client)
 	cout << "OnDisConnect ..\n";
 }
 
-void SimpleChatServer::OnMessage(const SimpleMessage& msg)
+void SimpleChatServer::OnMessage(const Message& msg)
 {
 	
 }

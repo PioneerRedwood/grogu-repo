@@ -1,20 +1,35 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 #include "ChattingMessage.pb.h"
 #include "google/protobuf/text_format.h"
 
 namespace chat {
 
-	using SimpleMessage = shelby::chat::proto3::SimpleChattingMessage;
-const static void ShowPrettyMessage(const SimpleMessage& msg)
+// All the message types	
+using header = shelby::chat::proto3::SimpleHeader;
+using body = shelby::chat::proto3::SimpleMessage;
+
+struct Message
 {
-	// Serialize and print into console
-	if (std::string str; google::protobuf::TextFormat::PrintToString(msg, &str))
-	{
-		std::cout << str << "\n";
-	}
+	header header_;
+	body body_;
+};
+
+// Set data into the src properly with NO allocation!
+const static void SetMessage(Message* const msg, const uint32_t _id, const std::string& _content)
+{
+	msg->header_.set_id(_id);
+	msg->header_.set_size(_content.size());
+	msg->body_.set_content(_content);
 }
 
+const static void PrintMessage(const Message* msg)
+{
+	// Serialize and print into console
+	msg->header_.PrintDebugString();
+	msg->body_.PrintDebugString();
+}
 
 }

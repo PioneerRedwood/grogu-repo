@@ -1,15 +1,7 @@
 #pragma once
 #include "boost/asio.hpp"
-#include "TcpConnection.h"
-#include "TSDeque.h"
-#include "ChattingMessage.pb.h"
-
-/*
-2021-12-03
-it seems that ServerConnection and CliecntConnection 
-do not have common points. 
-
-*/
+#include "TSDeque.hpp"
+#include "MessageWrapper.h"
 
 namespace chat {
 // TODO: In server case, I/O instructions be handled by multi thread.
@@ -19,14 +11,15 @@ class ServerConnection
 {
 public:
 	ServerConnection(
-		asio::io_context& context, TSDeque<SimpleMessage>& read_deque, 
-		asio::ip::tcp::socket socket);
+		boost::asio::io_context& context, TSDeque<Message>& read_deque, 
+		boost::asio::ip::tcp::socket socket);
 
 	void Start();
 
-	void Send(const SimpleMessage& msg);
+	void Send(const Message& msg);
+	void Send(const uint32_t _id, const std::string& _content);
 
-	asio::ip::tcp::socket& GetSocket() { return socket_; }
+	boost::asio::ip::tcp::socket& GetSocket() { return socket_; }
 
 private:
 	void Read();
@@ -36,16 +29,19 @@ private:
 	void Store();
 
 private:
-	asio::io_context& context_;
-	asio::ip::tcp::socket socket_;
+	boost::asio::io_context& context_;
+	boost::asio::ip::tcp::socket socket_;
 
-	asio::io_context::strand read_strand_;
-	asio::io_context::strand write_strand_;
+	boost::asio::io_context::strand read_strand_;
+	boost::asio::io_context::strand write_strand_;
 
+	Message temp_;
+	//Message write_msg_;
 
-	SimpleMessage temp_;
-	TSDeque<SimpleMessage>& read_deque_;
-	TSDeque<SimpleMessage> write_deque_;
+	// This data structure could decrease memory performance
+	// Do not allocate and de-allocate! google-protobuf-msg
+	TSDeque<Message>& read_deque_;
+	TSDeque<Message> write_deque_;
 };
 
 }

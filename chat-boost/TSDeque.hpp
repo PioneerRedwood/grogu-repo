@@ -1,5 +1,6 @@
 // new version thread-safe STL wrapper
 // required complier version C++17 or later, mutex scoped_lock
+// 2021-12-03 header-only
 
 #pragma once
 #include <mutex>
@@ -22,6 +23,7 @@ public:
 	TSDeque() = default;
 	TSDeque(const TSDeque<T>&) = delete;
 	virtual ~TSDeque() { clear(); }
+
 	/*
 	const T& front();
 

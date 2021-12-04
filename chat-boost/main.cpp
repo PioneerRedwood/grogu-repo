@@ -6,8 +6,9 @@
 #include "boost/asio.hpp"
 
 // uncomment ON / comment OFF what you want to build
-//#define CLIENT true
-#define SERVER true
+#define CLIENT true
+//#define SERVER true
+//#define TEST true
 
 #ifdef CLIENT
 #include "ClientConnection.h"
@@ -15,6 +16,10 @@
 
 #ifdef SERVER
 #include "SimpleChatServer.h"
+#endif
+
+#ifdef TEST
+#include "MessageWrapper.h"
 #endif
 
 int main()
@@ -42,6 +47,5 @@ int main()
 	}
 
 #endif
-
 	return 0;
 }

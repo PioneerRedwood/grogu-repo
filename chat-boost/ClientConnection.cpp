@@ -3,10 +3,9 @@
 
 namespace chat {
 
-
-ClientConnection::ClientConnection(asio::io_context& context)
-	: context_(context), read_strand_(context), write_strand_(context),
-	socket_(context),
+ClientConnection::ClientConnection(boost::asio::io_context& context)
+	: context_(context), socket_(context), 
+	read_strand_(context), write_strand_(context),
 	ping_timer_(context, chrono::seconds(1)),
 	retry_timer_(context, chrono::seconds(1))
 {}
@@ -22,51 +21,93 @@ void ClientConnection::Start(const std::string& ip, const int port)
 
 void ClientConnection::Read()
 {
-	std::cout << "Begin to read.. " << read_deque_.size() << "\n";
-	asio::async_read(socket_,
-		asio::buffer(&temp_, sizeof(SimpleMessage)),
-		read_strand_.wrap([&](auto& error, size_t bytes)->void
+	//std::cout << "Begin to read.. " << read_deque_.size() << "\n";
+	boost::asio::async_read(socket_,
+		boost::asio::buffer(&temp_.header_, sizeof(header)),
+		read_strand_.wrap([&](auto& read_header_error, size_t header_bytes)->void
 			{
 				// Handle error
-				if (error)
+				if (read_header_error)
 				{
-					cerr << "Error: read " << error << "\n";
+					cerr << "Error: read " << read_header_error << "\n";
 					return;
 				}
+				else
+				{
+					if (temp_.header_.size() > 0)
+					{
+						boost::asio::async_read(socket_,
+							boost::asio::buffer(&temp_.body_, size_t(temp_.header_.size())),
+							read_strand_.wrap([&](auto& read_body_error, size_t body_bytes)->void
+								{
+									if (read_body_error)
+									{
+										cerr << "Error: read " << read_body_error << "\n";
+										return;
+									}
+									else
+									{
+										//PrintMessage(&temp_);
 
-				ShowPrettyMessage(temp_);
-
-				// AND if this is important to keep on read_deque_? Store() ..!
-				Store();
+										// if it  is important to keep on then Store() ..!
+										Store();
+									}
+								}));
+					}
+				}
 			}));
 }
 
 void ClientConnection::Write()
 {
-	std::cout << "Begin to write .." << write_deque_.size() << "\n";
-	
-	asio::async_write(socket_,
-		// TODO: put the real sending data to the write_deque
-		asio::buffer(&write_deque_.front(), sizeof(SimpleMessage)),
-		write_strand_.wrap([&](auto& error, size_t bytes)->void
+	//std::cout << "Begin to write .." << write_deque_.size() << "\n";
+	boost::asio::async_write(socket_,
+		boost::asio::buffer(&write_deque_.front().header_, sizeof(header)),
+		write_strand_.wrap([&](auto& write_header_error, size_t header_bytes)->void
 			{
 				// Handle error
-				if (error)
+				if (write_header_error)
 				{
-					cerr << "Error: write " << error << "\n";
+					cerr << "Error: write " << write_header_error << "\n";
 					return;
 				}
-
-				// if there are more data to send? Call Write again
-				if (!write_deque_.empty())
+				else
 				{
-					write_deque_.pop_front();
+					if (write_deque_.front().header_.size() > 0)
+					{
+						boost::asio::async_write(socket_,
+							boost::asio::buffer(&write_deque_.front().body_, size_t(write_deque_.front().header_.size())),
+							write_strand_.wrap([&](auto& write_body_error, size_t body_bytes)->void
+								{
+									if (write_body_error)
+									{
+										cerr << "Error: write " << write_body_error << "\n";
+										return;
+									}
+									else
+									{
+										// if completed with success print it
+										cout << "Write completed[ "
+											<< "header bytes: " << header_bytes << "\t"
+											<< "body bytes: " << body_bytes << " ]\n";
+									}
+								}));
+					}
+
+					// if there are more data to send? Call Write again
+					if (!write_deque_.empty())
+					{
+						write_deque_.pop_front();
+					}
 				}
 			}));
 }
 
 void ClientConnection::Store()
 {
+	std::cout << "header[ ID:" << temp_.header_.id() << ", Size:" << temp_.header_.size() << " ]";
+	std::cout << "body[ content: " << temp_.body_.content() << " ]\n";
+
 	read_deque_.push_back(temp_);
 
 	Read();
@@ -75,7 +116,7 @@ void ClientConnection::Store()
 void ClientConnection::Connect(const std::string& ip, const int port)
 {
 	socket_.async_connect(
-		asio::ip::tcp::endpoint(asio::ip::make_address(ip), port),
+		boost::asio::ip::tcp::endpoint(boost::asio::ip::make_address(ip), port),
 		[this](auto& error)
 		{
 			if (error) 
@@ -111,9 +152,9 @@ void ClientConnection::TryConnect()
 
 }
 
-void ClientConnection::Send(const SimpleMessage& msg)
+void ClientConnection::Send(const Message& msg)
 {
-	asio::post(context_, [&, msg]()->void
+	boost::asio::post(context_, [&, msg]()->void
 		{
 			bool isWriting = !write_deque_.empty();
 			write_deque_.push_back(msg);
@@ -126,7 +167,7 @@ void ClientConnection::Send(const SimpleMessage& msg)
 
 void ClientConnection::Ping()
 {
-	ping_timer_.expires_at(ping_timer_.expiry() + chrono::seconds(1));
+	ping_timer_.expires_at(ping_timer_.expiry() + std::chrono::seconds(1));
 	ping_timer_.async_wait([&](auto& error)->void
 		{
 			if (error)
@@ -134,12 +175,13 @@ void ClientConnection::Ping()
 				return;
 			}
 
-			SimpleMessage msg;
-			msg.set_content("PING");
-			msg.set_owner_id(INT32_MAX);
-			msg.set_result(0);
+			Message msg;
+			// the string value not set on msg ...
+			msg.body_.set_content(PING);
+			msg.header_.set_id(1219);
+			msg.header_.set_size(5);
 
-			ShowPrettyMessage(msg);
+			PrintMessage(&msg);
 
 			Send(std::move(msg));
 			Ping();

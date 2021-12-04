@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TcpConnection.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ChattingMessage.pb.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -27,7 +24,7 @@
     <ClInclude Include="ServerConnection.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TSDeque.h">
+    <ClInclude Include="TSDeque.hpp">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SimpleChatServer.h">
@@ -44,16 +41,10 @@
     <ClCompile Include="ChattingMessage.pb.cc">
       <Filter>헤더 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TcpConnection.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ClientConnection.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ServerConnection.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="TSDeque.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SimpleChatServer.cpp">
