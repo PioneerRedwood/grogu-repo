@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 #include <string>
-#include "ServerConnection.h"
+#include "server_connection.h"
 #include "boost/functional/hash.hpp"
 
 namespace chat {

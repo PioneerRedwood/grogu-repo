@@ -3,10 +3,11 @@
 #include <thread>
 
 #include "boost/asio.hpp"
-#include "ServerConnection.h"
-#include "ConnectionInfo.h"
-#include "TSDeque.hpp"
-#include "MessageWrapper.h"
+#include "chat/tsdeque.hpp"
+#include "chat/message_wrapper.hpp"
+
+#include "server_connection.h"
+#include "connection_info.hpp"
 
 namespace chat {
 class SimpleChatServer
@@ -27,7 +28,7 @@ private:
 
 	virtual void OnConnect(conn_ptr client, uint32_t id);
 	virtual void OnDisconnect(conn_ptr client);
-	virtual void OnMessage(const Message& msg);
+	virtual void OnMessage(const chat::message::Message& msg);
 
 private:
 	boost::asio::io_context& context_;
@@ -35,10 +36,9 @@ private:
 	boost::asio::ip::tcp::acceptor acceptor_;
 	boost::asio::ip::tcp::endpoint endpoint_;
 
-	Message temp_;
-	TSDeque<Message> read_deque_;
-	// custom key map does not work well .. :p
-	//std::unordered_map<ConnectionInfo, conn_ptr, KeyHasher> clients_;
+	chat::message::Message temp_;
+	//TSDeque<Message> read_deque_;
+	TSDeque<chat::message::Message> read_deque_;
 	std::unordered_map<uint32_t, ConnectionInfo> clients_;
 
 	boost::asio::steady_timer update_timer_;

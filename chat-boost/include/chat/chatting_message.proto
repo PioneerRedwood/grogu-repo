@@ -17,6 +17,5 @@ message SimpleHeader
 message SimpleMessage
 {
 	string content = 1;
+	bytes byte_content = 2;
 }
-
-// 다음에 계속 추가 ..

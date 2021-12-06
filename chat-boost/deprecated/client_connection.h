@@ -1,7 +1,7 @@
 #pragma once
 #include "boost/asio.hpp"
 #include "TSDeque.hpp"
-#include "MessageWrapper.h"
+#include "message_wrapper.h"
 
 namespace chat {
 class ClientConnection 
@@ -12,12 +12,15 @@ public:
 
 	void Start(const std::string& ip, const int port);
 
+	//void Send(const SharedMessage& msg);
 	void Send(const Message& msg);
 
 private:
-	void Read();
+	void ReadHeader();
+	void ReadBody(std::size_t size);
 
-	void Write();
+	void WriteHeader();
+	void WriteBody(std::size_t size);
 
 	void Store();
 
@@ -36,9 +39,10 @@ private:
 	boost::asio::steady_timer retry_timer_;
 	boost::asio::steady_timer ping_timer_;
 
-	Message temp_;
-	std::string PING = "PING";
 	TSDeque<Message> read_deque_;
 	TSDeque<Message> write_deque_;
+	Message read_msg_;
+	Message write_msg_;
+
 };
 }

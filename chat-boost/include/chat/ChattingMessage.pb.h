@@ -523,6 +523,7 @@ class SimpleMessage final :
 
   enum : int {
     kContentFieldNumber = 1,
+    kByteContentFieldNumber = 2,
   };
   // string content = 1;
   void clear_content();
@@ -538,6 +539,20 @@ class SimpleMessage final :
   std::string* _internal_mutable_content();
   public:
 
+  // bytes byte_content = 2;
+  void clear_byte_content();
+  const std::string& byte_content() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_byte_content(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_byte_content();
+  PROTOBUF_MUST_USE_RESULT std::string* release_byte_content();
+  void set_allocated_byte_content(std::string* byte_content);
+  private:
+  const std::string& _internal_byte_content() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_byte_content(const std::string& value);
+  std::string* _internal_mutable_byte_content();
+  public:
+
   // @@protoc_insertion_point(class_scope:shelby.chat.proto3.SimpleMessage)
  private:
   class _Internal;
@@ -546,6 +561,7 @@ class SimpleMessage final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr byte_content_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_ChattingMessage_2eproto;
 };
@@ -738,6 +754,52 @@ inline void SimpleMessage::set_allocated_content(std::string* content) {
   content_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), content,
       GetArenaForAllocation());
   // @@protoc_insertion_point(field_set_allocated:shelby.chat.proto3.SimpleMessage.content)
+}
+
+// bytes byte_content = 2;
+inline void SimpleMessage::clear_byte_content() {
+  byte_content_.ClearToEmpty();
+}
+inline const std::string& SimpleMessage::byte_content() const {
+  // @@protoc_insertion_point(field_get:shelby.chat.proto3.SimpleMessage.byte_content)
+  return _internal_byte_content();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SimpleMessage::set_byte_content(ArgT0&& arg0, ArgT... args) {
+ 
+ byte_content_.SetBytes(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:shelby.chat.proto3.SimpleMessage.byte_content)
+}
+inline std::string* SimpleMessage::mutable_byte_content() {
+  std::string* _s = _internal_mutable_byte_content();
+  // @@protoc_insertion_point(field_mutable:shelby.chat.proto3.SimpleMessage.byte_content)
+  return _s;
+}
+inline const std::string& SimpleMessage::_internal_byte_content() const {
+  return byte_content_.Get();
+}
+inline void SimpleMessage::_internal_set_byte_content(const std::string& value) {
+  
+  byte_content_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* SimpleMessage::_internal_mutable_byte_content() {
+  
+  return byte_content_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* SimpleMessage::release_byte_content() {
+  // @@protoc_insertion_point(field_release:shelby.chat.proto3.SimpleMessage.byte_content)
+  return byte_content_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void SimpleMessage::set_allocated_byte_content(std::string* byte_content) {
+  if (byte_content != nullptr) {
+    
+  } else {
+    
+  }
+  byte_content_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), byte_content,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:shelby.chat.proto3.SimpleMessage.byte_content)
 }
 
 #ifdef __GNUC__

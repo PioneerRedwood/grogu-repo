@@ -1,7 +1,7 @@
 #pragma once
 #include "boost/asio.hpp"
-#include "TSDeque.hpp"
-#include "MessageWrapper.h"
+#include "tsdeque.hpp"
+#include "message_wrapper.h"
 
 namespace chat {
 // TODO: In server case, I/O instructions be handled by multi thread.
@@ -9,6 +9,8 @@ namespace chat {
 class ServerConnection
 	: public std::enable_shared_from_this<ServerConnection>
 {
+	//using SharedMessage = std::shared_ptr<Message>;
+
 public:
 	ServerConnection(
 		boost::asio::io_context& context, TSDeque<Message>& read_deque, 
@@ -17,14 +19,17 @@ public:
 	void Start();
 
 	void Send(const Message& msg);
+	
 	void Send(const uint32_t _id, const std::string& _content);
 
 	boost::asio::ip::tcp::socket& GetSocket() { return socket_; }
 
 private:
-	void Read();
+	void ReadHeader();
+	void ReadBody(std::size_t size);
 
-	void Write();
+	void WriteHeader();
+	void WriteBody(std::size_t size);
 
 	void Store();
 
@@ -35,7 +40,7 @@ private:
 	boost::asio::io_context::strand read_strand_;
 	boost::asio::io_context::strand write_strand_;
 
-	Message temp_;
+	Message read_msg_;
 	//Message write_msg_;
 
 	// This data structure could decrease memory performance

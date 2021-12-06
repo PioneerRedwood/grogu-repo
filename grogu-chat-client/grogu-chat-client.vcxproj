@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{80c85c8f-71b2-4170-a73b-a57829ce9674}</ProjectGuid>
-    <RootNamespace>chatboost</RootNamespace>
+    <ProjectGuid>{144913d1-51dd-468c-b244-2fc8e059ee5c}</ProjectGuid>
+    <RootNamespace>groguchatclient</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,9 +78,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -119,15 +116,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%BOOST%;%PROTOBUF%\include;%SDK_DIR%\boost_1_77_0;%SDK_DIR%\vcpkg\packages\protobuf_x64-windows\include;</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>%BOOST%;%PROTOBUF%\include;%SDK_DIR%\boost_1_77_0;%SDK_DIR%\vcpkg\packages\protobuf_x64-windows\include;C:\Users\NICE신용정보\source\repos\grogu-repo\chat-boost\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%BOOST%\stage\lib;%PROTOBUF%\debug\lib;%SDK_DIR%\boost_1_77_0\stage\lib;%SDK_DIR%\\vcpkg\packages\protobuf_x64-windows\debug\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);libprotobufd.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%BOOST%\stage\lib;%PROTOBUF%\debug\lib;%SDK_DIR%\boost_1_77_0\stage\lib;%SDK_DIR%\\vcpkg\packages\protobuf_x64-windows\debug\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);libprotobufd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,16 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\chat\ChattingMessage.pb.h" />
-    <ClInclude Include="include\chat\message_wrapper.hpp" />
-    <ClInclude Include="include\chat\tcp_connection.hpp" />
-    <ClInclude Include="include\chat\tsdeque.hpp" />
+    <ClCompile Include="client_connection.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\chat\ChattingMessage.pb.cc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="include\chat\chatting_message.proto" />
+    <ClInclude Include="client_connection.h" />
+    <ClInclude Include="predef.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
