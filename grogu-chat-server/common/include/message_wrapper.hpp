@@ -2,21 +2,20 @@
 #include <iostream>
 #include <string>
 
-#include "ChattingMessage.pb.h"
+#include "chatting_message.pb.h"
 #include "google/protobuf/message.h"
 #include "google/protobuf/descriptor.h"
 #include "google/protobuf/io/zero_copy_stream_impl.h"
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/io/zero_copy_stream_impl_lite.h"
-
 #include "google/protobuf/text_format.h"
 
 namespace chat {
 namespace message {
 
 // All the message types	
-using header = shelby::chat::proto3::SimpleHeader;
-using body = shelby::chat::proto3::SimpleMessage;
+using header = grogu::chat::SimpleHeader;
+using body = grogu::chat::SimpleMessage;
 
 struct Message
 {

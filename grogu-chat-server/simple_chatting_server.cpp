@@ -115,7 +115,7 @@ void SimpleChatServer::OnDisconnect(conn_ptr client)
 	cout << "OnDisConnect ..\n";
 }
 
-void SimpleChatServer::OnMessage(const Message& msg)
+void SimpleChatServer::OnMessage(const chat::message::Message& msg)
 {
 	
 }

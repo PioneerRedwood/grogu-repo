@@ -1,8 +1,8 @@
 #pragma once
-#include "boost/asio.hpp"
+#include "predef.h"
 #include "chat/tcp_connection.hpp"
-#include "chat/tsdeque.hpp"
-#include "chat/message_wrapper.hpp"
+#include "tsdeque.hpp"
+#include "message_wrapper.hpp"
 
 namespace chat {
 class ClientConnection

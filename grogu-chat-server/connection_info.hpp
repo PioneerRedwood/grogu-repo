@@ -1,6 +1,5 @@
 #pragma once
-#include <chrono>
-#include <string>
+#include "predef.h"
 #include "server_connection.h"
 #include "boost/functional/hash.hpp"
 

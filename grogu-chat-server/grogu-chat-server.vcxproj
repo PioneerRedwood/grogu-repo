@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.props" Condition="Exists('packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,11 +19,30 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="connection_info.hpp" />
+    <ClInclude Include="chat\chat.hpp" />
+    <ClInclude Include="chat\message_wrapper.hpp" />
+    <ClInclude Include="chat\tcp_connection.hpp" />
+    <ClInclude Include="chat\tsdeque.hpp" />
+    <ClInclude Include="predef.h" />
+    <ClInclude Include="server_connection.h" />
+    <ClInclude Include="simple_chatting_server.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="server_connection.cpp" />
+    <ClCompile Include="simple_chatting_server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="chat\chatting_message.proto" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3d470f63-04b5-449a-a56c-66058150ee78}</ProjectGuid>
-    <RootNamespace>groguserver</RootNamespace>
+    <ProjectGuid>{384e7839-71b2-4733-8fad-4b89ac04b8ce}</ProjectGuid>
+    <RootNamespace>groguchatserver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,6 +98,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+    <IncludePath>$(SolutionDir)\common\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)\common\src;$(SourcePath)</SourcePath>
+    <Linkage-protobuf>static</Linkage-protobuf>
+    <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -116,13 +141,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%BOOST%;%PROTOBUF%\include;%SDK_DIR%\boost_1_77_0;%SDK_DIR%\vcpkg\packages\protobuf_x64-windows\include;C:\Users\NICE신용정보\source\repos\grogu-repo\chat-boost\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%BOOST%;%PROTOBUF%\include;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%BOOST%\stage\lib;%PROTOBUF%\debug\lib;%SDK_DIR%\boost_1_77_0\stage\lib;%SDK_DIR%\\vcpkg\packages\protobuf_x64-windows\debug\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%BOOST%\stage\lib;%PROTOBUF%\debug\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);libprotobufd.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,17 +168,17 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="include\server_connection.cpp" />
-    <ClCompile Include="include\simple_chatting_server.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\connection_info.hpp" />
-    <ClInclude Include="include\server_connection.h" />
-    <ClInclude Include="include\simple_chatting_server.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\protobuf.2.6.1.1\build\native\protobuf.targets" Condition="Exists('packages\protobuf.2.6.1.1\build\native\protobuf.targets')" />
+    <Import Project="packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.targets" Condition="Exists('packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\protobuf.2.6.1.1\build\native\protobuf.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\protobuf.2.6.1.1\build\native\protobuf.targets'))" />
+    <Error Condition="!Exists('packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.props'))" />
+    <Error Condition="!Exists('packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\vcpkg-export-boost-asio-x64-static.1.0.1\build\native\vcpkg-export-boost-asio-x64-static.targets'))" />
+  </Target>
 </Project>

@@ -1,12 +1,5 @@
-#ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0501
-#endif 
-
-#include <iostream>
-#include "boost/asio.hpp"
-
-#include "include/simple_chatting_server.h"
-#include "chat/message_wrapper.hpp"
+#include "predef.h"
+#include "simple_chatting_server.h"
 
 int main()
 {

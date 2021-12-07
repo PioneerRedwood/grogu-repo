@@ -27,10 +27,16 @@
     <ClInclude Include="include\chat\tcp_connection.hpp">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="include\chat\chat.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\chat\ChattingMessage.pb.cc">
       <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chat-debug-main.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

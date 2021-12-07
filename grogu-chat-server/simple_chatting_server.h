@@ -1,11 +1,7 @@
 #pragma once
-#include <unordered_map>
-#include <thread>
+#include "predef.h"
 
-#include "boost/asio.hpp"
-#include "chat/tsdeque.hpp"
-#include "chat/message_wrapper.hpp"
-
+#include "common/chat.hpp"
 #include "server_connection.h"
 #include "connection_info.hpp"
 

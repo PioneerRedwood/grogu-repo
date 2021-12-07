@@ -1,0 +1,21 @@
+syntax = "proto3";
+package shelby.chat.proto3;
+
+message SimpleChattingMessage
+{
+	string content = 1;
+	int32 owner_id = 2;
+	int32 result = 3;
+}
+
+message SimpleHeader
+{
+	uint32 id = 1;
+	uint32 size = 2;
+}
+
+message SimpleMessage
+{
+	string content = 1;
+	bytes byte_content = 2;
+}

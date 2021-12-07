@@ -1,5 +1,6 @@
 #pragma once
 
+// at least WINDOWS 7
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0601
 #endif 
@@ -9,6 +10,8 @@
 #include <vector>
 #include <string>
 #include <chrono>
+#include <unordered_map>
+#include <thread>
 
 // boost-asio
 /*
@@ -33,3 +36,5 @@ io_context, strand, tcp, udp, steady_timer
 #include "google/protobuf/text_format.h"
 
 // custom common header
+
+// custom define!
