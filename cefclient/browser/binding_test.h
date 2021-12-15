@@ -8,10 +8,13 @@
 
 #include "tests/cefclient/browser/test_runner.h"
 
+// updated 2021-12-15 
+
 namespace client {
 namespace binding_test {
 
 // Create message handlers. Called from test_runner.cc.
+// 메시지 핸들러를 생성합니다. test_runner에서 호출됩니다.
 void CreateMessageHandlers(test_runner::MessageHandlerSet& handlers);
 
 }  // namespace binding_test

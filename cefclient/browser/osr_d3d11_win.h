@@ -13,6 +13,7 @@
 //
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
+// 기존과는 다른 라이센스 적용
 
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_OSR_D3D11_WIN_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_OSR_D3D11_WIN_H_
@@ -25,6 +26,8 @@
 #include <vector>
 
 #include "include/base/cef_macros.h"
+
+// updated 2021-12-15
 
 namespace client {
 namespace d3d11 {

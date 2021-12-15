@@ -24,39 +24,49 @@
 namespace client {
 
 // Used to configure how a RootWindow is created.
+// 루트윈도우를 어떻게 생성될지 설정하기 위해 사용됩니다.
 struct RootWindowConfig {
   RootWindowConfig();
 
   // If true the window will always display above other windows.
+  // 항상 위
   bool always_on_top;
 
   // If true the window will show controls.
+  // 제어 표시
   bool with_controls;
 
   // If true the window will use off-screen rendering.
+  // 오프스크린 렌더링 사용
   bool with_osr;
 
   // If true the window is hosting an extension app.
+  // 확장 앱 호스팅
   bool with_extension;
 
   // If true the window will be created initially hidden.
+  // 히든으로 초기화
   bool initially_hidden;
 
   // Requested window position. If |bounds| and |source_bounds| are empty the
   // default window size and location will be used.
+  // 창 위치 요청, 비어있으면 기본 사이즈와 위치로
   CefRect bounds;
 
   // Position of the UI element that triggered the window creation. If |bounds|
   // is empty and |source_bounds| is non-empty the new window will be positioned
   // relative to |source_bounds|. This is currently only implemented for Views-
   // based windows when |initially_hidden| is also true.
+  // 창이 생성될 때의 UI 요소의 위치
   CefRect source_bounds;
 
   // Parent window. Only used for Views-based windows.
+  // 부모 창
   CefRefPtr<CefWindow> parent_window;
 
   // Callback to be executed when the window is closed. Will be executed on the
   // main thread. This is currently only implemented for Views-based windows.
+  // 창이 닫힐 때 실행되는 콜백
   base::Closure close_callback;
 
   // Initial URL to load.

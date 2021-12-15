@@ -9,8 +9,13 @@
 // When generating projects with CMake the CEF_USE_ATL value will be defined
 // automatically if using a supported Visual Studio version. Pass -DUSE_ATL=OFF
 // to the CMake command-line to disable use of ATL.
-// Uncomment this line to manually enable ATL support.
+// Uncomment this line to manually enable ATL support. // ATL 지원을 활성화하려면 다음 주석을 해제하십시오.
 // #define CEF_USE_ATL 1
+
+// 프로젝트를 CMake로 생성시에 만약 VS 버전을 지원하는 것을 사용하면
+// CEF_USE_ATL 변수가 자동적으로 정의될 것입니다.
+// ATL을 비활성화하려면 CMake 명령줄에 -DUSE_ATL=OFF를 설정하십시오
+
 
 #if defined(CEF_USE_ATL)
 

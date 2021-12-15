@@ -21,12 +21,15 @@
 #include "tests/cefclient/browser/print_handler_gtk.h"
 #endif
 
+// updated 2021-12-15
+
 namespace client {
 
 class ClientDownloadImageCallback;
 
 // Client handler abstract base class. Provides common functionality shared by
 // all concrete client handler implementations.
+// 클라이언트 핸들러 추상 기반 클래스. 모든 클라이언트 핸들러 구현을 공유하는 공통 기능을 제공합니다.
 class ClientHandler : public CefClient,
                       public CefContextMenuHandler,
                       public CefDisplayHandler,
@@ -42,6 +45,8 @@ class ClientHandler : public CefClient,
   // Implement this interface to receive notification of ClientHandler
   // events. The methods of this class will be called on the main thread unless
   // otherwise indicated.
+  // 클라이언트 핸들러 이벤트에 대한 통지를 수신하는 인터페이스를 구현합니다.
+  // 특별한 명시가 없다면 이 클래스의 메서드는 메인 스레드에서만 호출됩니다.
   class Delegate {
    public:
     // Called when the browser is created.
@@ -91,6 +96,8 @@ class ClientHandler : public CefClient,
 
   // Constructor may be called on any thread.
   // |delegate| must outlive this object or DetachDelegate() must be called.
+  // 어느 스레드에서든 생성자가 호출될 수 있습니다.
+  // |delegate|는 반드시 해당 객체보다 오래 유지되거나 DetachDelegate()가 호출돼야 합니다.
   ClientHandler(Delegate* delegate,
                 bool is_osr,
                 const std::string& startup_url);
@@ -329,6 +336,10 @@ class ClientHandler : public CefClient,
   // will be true if the window will be used for DevTools. Return true to
   // proceed with popup browser creation or false to cancel the popup browser.
   // May be called on any thead.
+  // 명시된 정보로 새로운 팝업 창을 생성합니다.
+  // 해당 창이 개발도구로 사용된다면 |is_devtools|가 true가 됩니다.
+  // 팝업 브라우저 생성을 수행한다면 true를 반환하고 취소하면 false를 반환합니다.
+  // 어느 스레드에서든 호출될 수 있습니다.
   bool CreatePopupWindow(CefRefPtr<CefBrowser> browser,
                          bool is_devtools,
                          const CefPopupFeatures& popupFeatures,
@@ -337,6 +348,7 @@ class ClientHandler : public CefClient,
                          CefBrowserSettings& settings);
 
   // Execute Delegate notifications on the main thread.
+  // 메인 스레드에 델리게이트 통지를 수행합니다.
   void NotifyBrowserCreated(CefRefPtr<CefBrowser> browser);
   void NotifyBrowserClosing(CefRefPtr<CefBrowser> browser);
   void NotifyBrowserClosed(CefRefPtr<CefBrowser> browser);
@@ -357,7 +369,10 @@ class ClientHandler : public CefClient,
 
   // THREAD SAFE MEMBERS
   // The following members may be accessed from any thread.
+  // 스레드 안전 멤버들
+  // 다음의 멤버들은 어느 스레드에서든 접근될 수 있습니다.
 
+  // 만약 이 핸들러가 off-screen rendering을 사용한다면 true
   // True if this handler uses off-screen rendering.
   const bool is_osr_;
 
@@ -394,11 +409,16 @@ class ClientHandler : public CefClient,
   // The following members will only be accessed on the main thread. This will
   // be the same as the CEF UI thread except when using multi-threaded message
   // loop mode on Windows.
+  // 메인 스레드 멤버들
+  // 다음의 멤버들은 오직 메인 스레드에서만 접근할 수 있습니다.
+  // Windows에서 멀티 스레드 메시지 루프를 사용할 때를 제외하고는 CEF UI 스레드와 동일합니다.
 
   Delegate* delegate_;
 
   // UI THREAD MEMBERS
   // The following members will only be accessed on the CEF UI thread.
+  // UI 스레드 멤버들
+  // CEF UI 스레드에서만 접근 가능한 멤버들입니다.
 
   // Track state information for the text context menu.
   struct TestMenuState {

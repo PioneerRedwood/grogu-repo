@@ -13,12 +13,19 @@
 #include "include/base/cef_platform_thread.h"
 #include "tests/shared/browser/main_message_loop.h"
 
+// updated 2021-12-15
+
 namespace client {
 
 // Represents the main message loop in the browser process when using multi-
 // threaded message loop mode on Windows. In this mode there is no Chromium
 // message loop running on the main application thread. Instead, this
 // implementation utilizes a hidden message window for running tasks.
+// Windows에서 멀티 스레드 메시지 루프 모드를 사용하면
+// 브라우저 프로세스의 메인 메시지 루프를 나타냅니다.
+// 해당 모드에서는 메인 어플리케이션 스레드에 크로미움 메시지 루프는 없습니다.
+// 대신, 이 구현은 작업을 실행하는 숨겨진 메시지 창을 사용합니다.
+// 
 class MainMessageLoopMultithreadedWin : public MainMessageLoop {
  public:
   MainMessageLoopMultithreadedWin();

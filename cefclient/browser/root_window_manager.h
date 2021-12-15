@@ -19,14 +19,20 @@ namespace client {
 
 // Used to create/manage RootWindow instances. The methods of this class can be
 // called from any browser process thread unless otherwise indicated.
+// 루트윈도우 인스턴스를 생성하고 관리할 때 사용됩니다.
+// 특별한 명시가 없다면 어느 브라우저 프로세스 스레드에서든 호출될 수 있습니다.
 class RootWindowManager : public RootWindow::Delegate {
  public:
   // If |terminate_when_all_windows_closed| is true quit the main message loop
   // after all windows have closed.
+  // 만약 |terminate_when_all_windows_closed|가 true일 경우 
+  // 모든 창이 닫혔을 때 메인 메시지 루프를 빠져나갑니다.
   explicit RootWindowManager(bool terminate_when_all_windows_closed);
 
   // Create a new top-level native window. This method can be called from
   // anywhere.
+  // 새로운 최상위 레벨 네이티브 창을 생성합니다.
+  // 해당 메서드는 어디서든 호출될 수 있습니다.
   scoped_refptr<RootWindow> CreateRootWindow(const RootWindowConfig& config);
 
   // Create a new native popup window.
@@ -34,6 +40,11 @@ class RootWindowManager : public RootWindow::Delegate {
   // If |with_osr| is true the window will use off-screen rendering.
   // This method is called from ClientHandler::CreatePopupWindow() to
   // create a new popup or DevTools window. Must be called on the UI thread.
+  // 새로운 네이티브 팝업 창을 생성합니다.
+  // |with_controls|가 true일 경우 제어를 보여줍니다.
+  // |with_osr|이 true이면 오프스크린 렌더링을 사용합니다.
+  // 새로운 팝업 혹은 개발도구창을 생성하기 위해 ClientHandler::CreatePopupWindow()에서 호출됩니다.
+  // UI 스레드에서만 호출돼야 합니다.
   scoped_refptr<RootWindow> CreateRootWindowAsPopup(
       bool with_controls,
       bool with_osr,
@@ -46,6 +57,7 @@ class RootWindowManager : public RootWindow::Delegate {
   // If |with_controls| is true the window will show controls.
   // If |with_osr| is true the window will use off-screen rendering.
   // This method can be called from anywhere.
+  // |extension|를 호스트하기 위해 새로운 최상위 네이티브 창을 생성합니다. 
   scoped_refptr<RootWindow> CreateRootWindowAsExtension(
       CefRefPtr<CefExtension> extension,
       const CefRect& source_bounds,

@@ -15,6 +15,8 @@ namespace client {
 
 // Handles IME for the native parent window that hosts an off-screen browser.
 // This object is only accessed on the CEF UI thread.
+// 오프스크린 브라우저를 호스트하는 네이티브 부모 창을 위해 IME를 제어합니다.
+// 해당 객체는 CEF UI 스레드에서만 접근할 수 있습니다.
 class OsrImeHandlerWin {
  public:
   explicit OsrImeHandlerWin(HWND hwnd);

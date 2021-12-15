@@ -8,10 +8,13 @@
 
 #include "tests/cefclient/browser/client_handler.h"
 
+// updated 2021-12-15
+
 namespace client {
 
 // Client handler implementation for windowed browsers. There will only ever be
 // one browser per handler instance.
+// 창이 있는 브라우저에 대한 클라이언트 핸들러 구현
 class ClientHandlerStd : public ClientHandler {
  public:
   ClientHandlerStd(Delegate* delegate, const std::string& startup_url);

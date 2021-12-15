@@ -37,9 +37,12 @@ class OsrAccessibilityHelper;
 
 // OsrAXNode is the base class for implementation for the NSAccessibility
 // protocol for interacting with VoiceOver and other accessibility clients.
+// OsrAXNode는 VoiceOver를 통한 상호작용과 다른 클라이언트 접근을 위한
+// NSAccessibility 프로토콜을 위한 기반 클래스입니다.
 class OsrAXNode {
  public:
   // Create and return the platform specific OsrAXNode Object.
+  // 특정 플랫폼에 맞는 OsrAXNode 객체를 생성하고 반환합니다.
   static OsrAXNode* CreateNode(const CefString& treeId,
                                int nodeId,
                                CefRefPtr<CefDictionaryValue> value,
@@ -53,13 +56,16 @@ class OsrAXNode {
 
   // Fire a platform-specific notification that an event has occurred on
   // this object.
+  // 이 객체에서 이벤트가 발생했음을 특정 플랫폼 별 통지합니다.
   void NotifyAccessibilityEvent(std::string event_type) const;
 
   // Call Destroy rather than deleting this, because the subclass may
   // use reference counting.
+  // 삭제하는 대신 파괴 함수 호출, 서브클래스에서 참조 카운팅을 사용하기 때문에
   void Destroy();
 
   // Return NSAccessibility Object for Mac/ IAccessible for Windows
+  // Mac에선 NSAccesibility 객체 반환 / 윈도우에선 IAccessible 반환
   CefNativeAccessible* GetNativeAccessibleObject(OsrAXNode* parent);
 
   CefNativeAccessible* GetParentAccessibleObject() const {
@@ -73,6 +79,7 @@ class OsrAXNode {
   int GetChildCount() const;
 
   // Return the Child at the specified index
+  // 명시된 인덱스의 자식을 반환합니다.
   OsrAXNode* ChildAtIndex(int index) const;
 
   const CefString& AxRole() const { return role_; }

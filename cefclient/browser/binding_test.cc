@@ -1,6 +1,7 @@
 // Copyright (c) 2012 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
+// 저작권
 
 #include "tests/cefclient/browser/binding_test.h"
 
@@ -18,11 +19,13 @@ const char kTestUrlPath[] = "/binding";
 const char kTestMessageName[] = "BindingTest";
 
 // Handle messages in the browser process.
+// 브라우저 프로세스에서 메시지 처리
 class Handler : public CefMessageRouterBrowserSide::Handler {
  public:
   Handler() {}
 
   // Called due to cefQuery execution in binding.html.
+  // binding.html cefQuery 실행으로 호출
   virtual bool OnQuery(CefRefPtr<CefBrowser> browser,
                        CefRefPtr<CefFrame> frame,
                        int64 query_id,
@@ -30,6 +33,7 @@ class Handler : public CefMessageRouterBrowserSide::Handler {
                        bool persistent,
                        CefRefPtr<Callback> callback) OVERRIDE {
     // Only handle messages from the test URL.
+    // 테스트 URL만 메시지 처리
     const std::string& url = frame->GetURL();
     if (!test_runner::IsTestURL(url, kTestUrlPath))
       return false;

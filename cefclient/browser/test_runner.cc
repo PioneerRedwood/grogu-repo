@@ -57,6 +57,7 @@ void LoadStringResourcePage(CefRefPtr<CefBrowser> browser,
 }
 
 // Replace all instances of |from| with |to| in |str|.
+
 std::string StringReplace(const std::string& str,
                           const std::string& from,
                           const std::string& to) {
@@ -213,6 +214,7 @@ const char kPromptFPS[] = "FPS";
 const char kPromptDSF[] = "DSF";
 
 // Handles execution of prompt results.
+// 프롬프트 결과의 수행을 처리합니다.
 class PromptHandler : public CefMessageRouterBrowserSide::Handler {
  public:
   PromptHandler() {}

@@ -9,10 +9,13 @@
 #include "include/cef_base.h"
 #include "tests/shared/browser/client_app_browser.h"
 
+// updated 2021-12-15
+
 namespace client {
 namespace browser {
 
 // Create the browser delegate. Called from client_app_delegates_browser.cc.
+// 브라우저 델리게이트를 생성합니다. client_app_delegates_browser.cc 파일로부터 호출됩니다.
 void CreateDelegates(ClientAppBrowser::DelegateSet& delegates);
 
 }  // namespace browser

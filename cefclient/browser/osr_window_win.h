@@ -24,6 +24,9 @@ class OsrImeHandlerWin;
 // Represents the native parent window for an off-screen browser. This object
 // must live on the CEF UI thread in order to handle CefRenderHandler callbacks.
 // The methods of this class are thread-safe unless otherwise indicated.
+// 오프스크린 브라우저를 위한 네이티브 부모 창을 나타냅니다.
+// CefRenderHandler 콜백을 처리하기 위해 CEF UI 스레드 내에서 있어야 합니다.
+// 특별한 명시가 없다면 해당 클래스의 메서드는 스레드-안전합니다.
 class OsrWindowWin
     : public base::RefCountedThreadSafe<OsrWindowWin, CefDeleteOnUIThread>,
       public ClientHandlerOsr::OsrDelegate
@@ -35,6 +38,8 @@ class OsrWindowWin
  public:
   // This interface is implemented by the owner of the OsrWindowWin. The
   // methods of this class will be called on the main thread.
+  // OsrWindowWin의 소유자에 의해 해당 인터페이스는 구현됩니다.
+  // 해당 클래스의 메서드는 메인 스레드에 의해 호출됩니다.
   class Delegate {
    public:
     // Called after the native window has been created.

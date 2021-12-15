@@ -14,6 +14,8 @@ namespace client {
 
 // Abstract base class for implementing OSR rendering with different backends on
 // Windows. Methods are only called on the UI thread.
+// 윈도우 내에서 다른 백엔드를 사용하는 경우에 OSR 렌더링을 구현하는 추상 기반 클래스입니다.
+// UI 스레드에서만 호출됩니다.
 class OsrRenderHandlerWin {
  public:
   OsrRenderHandlerWin(const OsrRendererSettings& settings, HWND hwnd);

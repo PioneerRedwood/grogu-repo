@@ -18,9 +18,11 @@ class OsrRenderer {
   ~OsrRenderer();
 
   // Initialize the OpenGL environment.
+  // OpenGL 환경을 초기화합니다.
   void Initialize();
 
   // Clean up the OpenGL environment.
+  // OpenGL 환경을 지웁니다.
   void Cleanup();
 
   // Render to the screen.

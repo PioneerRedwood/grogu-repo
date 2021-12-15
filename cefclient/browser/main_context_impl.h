@@ -13,9 +13,12 @@
 #include "tests/cefclient/browser/main_context.h"
 #include "tests/cefclient/browser/root_window_manager.h"
 
+// updated 2021-12-15
+
 namespace client {
 
 // Used to store global context in the browser process.
+// 브라우저 프로세스 안에 전역 컨텍스트를 저장하기 위해 사용됩니다.
 class MainContextImpl : public MainContext {
  public:
   MainContextImpl(CefRefPtr<CefCommandLine> command_line,
@@ -38,6 +41,8 @@ class MainContextImpl : public MainContext {
 
   // Initialize CEF and associated main context state. This method must be
   // called on the same thread that created this object.
+  // CEF와 메인 컨텍트스 상태와 관련된 것을 초기화합니다. 
+  // 이 메서드는 해당 객체를 생성했던 동일한 스레드에서 호출돼야 합니다.
   bool Initialize(const CefMainArgs& args,
                   const CefSettings& settings,
                   CefRefPtr<CefApp> application,
@@ -45,16 +50,20 @@ class MainContextImpl : public MainContext {
 
   // Shut down CEF and associated context state. This method must be called on
   // the same thread that created this object.
+  // CEF와 컨텍스트 상태와 연관된 것들을 종료합니다.
+  // 이 메서드는 해당 객체를 생성했던 동일한 스레드에서 호출돼야 합니다.
   void Shutdown();
 
  private:
   // Allow deletion via scoped_ptr only.
+  // 오직 scoped_ptr에 의한 삭제를 허용합니다.
   friend struct base::DefaultDeleter<MainContextImpl>;
 
   ~MainContextImpl();
 
   // Returns true if the context is in a valid state (initialized and not yet
   // shut down).
+  // 컨텍스트가 유효(아직 종료되지 않았고 초기화되지 않은)한 상태라면 true를 반환합니다.
   bool InValidState() const { return initialized_ && !shutdown_; }
 
   CefRefPtr<CefCommandLine> command_line_;
@@ -63,6 +72,8 @@ class MainContextImpl : public MainContext {
   // Track context state. Accessing these variables from multiple threads is
   // safe because only a single thread will exist at the time that they're set
   // (during context initialization and shutdown).
+  // 컨텍스트 상태를 추적합니다. 변수들에 다수 스레드가 접근해도 안전합니다.
+  // 이들이 설정되는 시점에는 단 하나의 스레드만 존재하기 때문입니다.
   bool initialized_;
   bool shutdown_;
 

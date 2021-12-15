@@ -8,10 +8,13 @@
 
 #include "tests/cefclient/browser/test_runner.h"
 
+// updated 2021-12-15
+
 namespace client {
 namespace drm_test {
 
 // Create message handlers. Called from test_runner.cc.
+// 메시지 핸들러 생성합니다. test_runner로부터 호출됩니다.
 void CreateMessageHandlers(test_runner::MessageHandlerSet& handlers);
 
 }  // namespace drm_test

@@ -34,6 +34,12 @@ class OsrAXTree {
 // Helper class that abstracts Renderer Accessibility tree and provides a
 // uniform interface to be consumed by IAccessible interface on Windows and
 // NSAccessibility implementation on Mac in CefClient.
+// 아래 기능을 수행하는 도우미 클래스
+// 1. Renderer Accessiblity 트리를 추상화
+// 2. CefClient에 플랫폼 별 표준 인터페이스 제공
+// - Windows: IAccessible 인터페이스에 의해 소비되는(?)
+// - Mac: NSAcessiblility 구현
+// 렌더링 관련해서 플랫폼 별 다른 부분을 동일한 인터페이스를 제공하는 도우미 클래스
 class OsrAccessibilityHelper {
  public:
   OsrAccessibilityHelper(CefRefPtr<CefValue> value,
