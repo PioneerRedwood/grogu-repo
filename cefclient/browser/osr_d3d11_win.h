@@ -15,6 +15,8 @@
 // all copies or substantial portions of the Software.
 // 기존과는 다른 라이센스 적용
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_OSR_D3D11_WIN_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_OSR_D3D11_WIN_H_
 #pragma once

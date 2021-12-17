@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_WINDOW_TEST_RUNNER_WIN_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_WINDOW_TEST_RUNNER_WIN_H_
 #pragma once
@@ -13,6 +15,8 @@ namespace window_test {
 
 // Windows platform implementation. Methods are safe to call on any browser
 // process thread.
+// 윈도우 플랫폼 구현. 
+// 메서드는 어느 브라우저 프로세스 스레드에서 호출해도 안전합니다.
 class WindowTestRunnerWin : public WindowTestRunner {
  public:
   WindowTestRunnerWin();

@@ -2,8 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
-#include "tests/cefclient/common/scheme_test_common.h"
-#include "tests/shared/common/client_app.h"
+#include "common/scheme_test_common.h"
+// #include "tests/shared/common/client_app.h" // 해당 디렉토리는 cefsimple/tests를 참고하십시오
 
 namespace client {
 

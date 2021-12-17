@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_ROOT_WINDOW_VIEWS_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_ROOT_WINDOW_VIEWS_H_
 #pragma once
@@ -18,11 +20,14 @@ namespace client {
 // Views framework implementation of a top-level window in the browser process.
 // The methods of this class must be called on the main thread unless otherwise
 // indicated.
+// 브라우저 프로세스에 Vies 프레임워크 최상위 창 구현입니다.
+// 특별한 명시가 없는 경우 해당 클래스의 메서드는 메인 스레드에서 호출됩니다.
 class RootWindowViews : public RootWindow,
                         public ClientHandler::Delegate,
                         public ViewsWindow::Delegate {
  public:
   // Constructor may be called on any thread.
+  // 생성자는 어디에서든 호출될 수 있습니다.
   RootWindowViews();
   ~RootWindowViews();
 

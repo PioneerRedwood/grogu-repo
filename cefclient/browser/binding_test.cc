@@ -3,12 +3,14 @@
 // can be found in the LICENSE file.
 // 저작권
 
-#include "tests/cefclient/browser/binding_test.h"
+// updated 2021-12-16
+
+#include "browser/binding_test.h"
 
 #include <algorithm>
 #include <string>
 
-#include "tests/cefclient/browser/test_runner.h"
+#include "browser/test_runner.h"
 
 namespace client {
 namespace binding_test {

@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_ROOT_WINDOW_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_ROOT_WINDOW_H_
 #pragma once
@@ -78,15 +80,21 @@ typedef std::set<CefRefPtr<CefExtension>> ExtensionSet;
 // Represents a top-level native window in the browser process. While references
 // to this object are thread-safe the methods must be called on the main thread
 // unless otherwise indicated.
+// 브라우저 프로세스에서 최상위 네이티브 창을 나타냅니다.
+// 이 객체에 대한 참조는 스레드-안전이지만 
+// 특별한 명시가 없는 메서드라면 메인 스레드에서 호출되어야 합니다.
 class RootWindow
     : public base::RefCountedThreadSafe<RootWindow, DeleteOnMainThread> {
  public:
   // This interface is implemented by the owner of the RootWindow. The methods
   // of this class will be called on the main thread.
+  // 루트윈도우의 소유자에 의해서 인터페이스가 구현됩니다.
   class Delegate {
    public:
     // Called to retrieve the CefRequestContext for browser. Only called for
     // non-popup browsers. May return NULL.
+    // 브라우저에 대한 CefRequestContext를 검색하기 위해 호출됩니다.
+    // 팝업이 아닌 브라우저에서만 호출됩니다. NULL을 반환할 것입니다.
     virtual CefRefPtr<CefRequestContext> GetRequestContext(
         RootWindow* root_window) = 0;
 
@@ -125,6 +133,9 @@ class RootWindow
   // Use RootWindowManager::CreateRootWindow() or CreateRootWindowAsPopup()
   // instead of calling this method directly. |use_views| will be true if the
   // Views framework should be used.
+  // 루트윈도우 객체를 생성합니다. 어느 스레드에든 호출될 수 있습니다.
+  // 해당 메서드를 직접적으로 호출하기 보다 
+  // RootWindowManager::CreateRootWindow() 혹은 CreateRootWindowAsPopup()을 사용하십시오
   static scoped_refptr<RootWindow> Create(bool use_views);
 
   // Returns the RootWindow associated with the specified |browser_id|. Must be
@@ -142,6 +153,8 @@ class RootWindow
   // |delegate| must be non-NULL and outlive this object.
   // Use RootWindowManager::CreateRootWindow() instead of calling this method
   // directly.
+  // 일반 창으로 초기화합니다. 단일 브라우저 인스턴스를 호스팅하는 네이티브 창을 생성하고 보여줄 것입니다.
+  // 어느 스레드에서든 호출될 수 있습니다. |delegate|는 NULL이 될 수 없고, 이 객체보다 오래 유지됩니다. 
   virtual void Init(RootWindow::Delegate* delegate,
                     const RootWindowConfig& config,
                     const CefBrowserSettings& settings) = 0;
@@ -152,6 +165,9 @@ class RootWindow
   // called on any thread. |delegate| must be non-NULL and outlive this object.
   // Use RootWindowManager::CreateRootWindowAsPopup() instead of calling this
   // method directly. Called on the UI thread.
+  // 팝업 창으로 초기화합니다. 이후에 생성될 단일 브라우저 인스턴스를 위한 새로운 
+  // 네이티브 창에 붙이기 위해 사용됩니다. 네이티브 창은 한번 브라우저가 사용가능할 때
+  // 생성되고 보일 것입니다. 
   virtual void InitAsPopup(RootWindow::Delegate* delegate,
                            bool with_controls,
                            bool with_osr,

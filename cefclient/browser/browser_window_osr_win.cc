@@ -2,9 +2,11 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
-#include "tests/cefclient/browser/browser_window_osr_win.h"
+// updated 2021-12-16
 
-#include "tests/shared/browser/main_message_loop.h"
+#include "browser/browser_window_osr_win.h"
+
+#include "shared/browser/main_message_loop.h"
 
 namespace client {
 

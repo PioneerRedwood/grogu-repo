@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_BROWSER_WINDOW_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_BROWSER_WINDOW_H_
 #pragma once
@@ -10,8 +12,6 @@
 #include "include/cef_browser.h"
 #include "tests/cefclient/browser/client_handler.h"
 #include "tests/cefclient/browser/client_types.h"
-
-// updated 2021-12-15 
 
 namespace client {
 

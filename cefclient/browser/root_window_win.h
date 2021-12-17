@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_ROOT_WINDOW_WIN_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_ROOT_WINDOW_WIN_H_
 #pragma once
@@ -21,6 +23,7 @@ namespace client {
 // Windows implementation of a top-level native window in the browser process.
 // The methods of this class must be called on the main thread unless otherwise
 // indicated.
+// 브라우저 프로세스 내부에 있는 최상위 네이티브 창의 윈도우 구현입니다.
 class RootWindowWin : public RootWindow, public BrowserWindow::Delegate {
  public:
   // Constructor may be called on any thread.

@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_CLIENT_HANDLER_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_CLIENT_HANDLER_H_
 #pragma once
@@ -20,8 +22,6 @@
 #include "tests/cefclient/browser/dialog_handler_gtk.h"
 #include "tests/cefclient/browser/print_handler_gtk.h"
 #endif
-
-// updated 2021-12-15
 
 namespace client {
 

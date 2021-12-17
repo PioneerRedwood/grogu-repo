@@ -16,11 +16,16 @@
 #include "include/views/cef_menu_button_delegate.h"
 #include "include/views/cef_panel.h"
 
+// updated 2021-12-16
+
 namespace client {
 
 // Implements a menu bar which is composed of CefMenuButtons positioned in a
 // row with automatic switching between them via mouse/keyboard. All methods
 // must be called on the browser process UI thread.
+// 마우스/키보드에 의해 자동으로 변경되는 행에 위치되는
+// CefMenuButtons을 구성하기 위한 메뉴바 구협입니다.
+// 모든 메서드는 브라우저 프로세스 UI 스레드에서 호출돼야 합니다.
 class ViewsMenuBar : public CefMenuButtonDelegate, public CefMenuModelDelegate {
  public:
   // Delegate methods will be called on the browser process UI thread.
@@ -104,7 +109,7 @@ class ViewsMenuBar : public CefMenuButtonDelegate, public CefMenuModelDelegate {
   // Triggers the specified MenuButton |button|.
   void TriggerMenuButton(CefRefPtr<CefView> button);
 
-  Delegate* delegate_;  // Not owned by this object.
+  Delegate* delegate_;  // Not owned by this object. // 해당 오브젝트에 의해 소유되지 않음
   const int id_start_;
   int id_next_;
   CefRefPtr<CefPanel> panel_;

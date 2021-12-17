@@ -2,14 +2,14 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_BYTES_WRITE_HANDLER_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_BYTES_WRITE_HANDLER_H_
 #pragma once
 
 #include "include/base/cef_lock.h"
 #include "include/cef_stream.h"
-
-// updated 2021-12-15
 
 namespace client {
 // 바이트 스트림의 래퍼 인터페이스를 구현해 사용이 쉽게 만든것으로 추정

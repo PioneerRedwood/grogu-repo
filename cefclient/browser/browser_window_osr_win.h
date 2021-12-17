@@ -2,14 +2,14 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_BROWSER_WINDOW_OSR_WIN_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_BROWSER_WINDOW_OSR_WIN_H_
 #pragma once
 
-#include "tests/cefclient/browser/browser_window.h"
-#include "tests/cefclient/browser/osr_window_win.h"
-
-// updated 2021-12-15 
+#include "browser/browser_window.h"
+#include "browser/osr_window_win.h"
 
 namespace client {
 

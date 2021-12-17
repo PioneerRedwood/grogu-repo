@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_OSR_DRAGDROP_WIN_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_OSR_DRAGDROP_WIN_H_
 #pragma once
@@ -15,7 +17,6 @@
 // 프로젝트를 CMake로 생성시에 만약 VS 버전을 지원하는 것을 사용하면
 // CEF_USE_ATL 변수가 자동적으로 정의될 것입니다.
 // ATL을 비활성화하려면 CMake 명령줄에 -DUSE_ATL=OFF를 설정하십시오
-
 
 #if defined(CEF_USE_ATL)
 

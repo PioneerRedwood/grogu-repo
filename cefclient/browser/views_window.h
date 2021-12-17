@@ -2,6 +2,8 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_VIEWS_WINDOW_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_VIEWS_WINDOW_H_
 #pragma once
@@ -32,6 +34,7 @@ typedef std::set<CefRefPtr<CefExtension>> ExtensionSet;
 // Implements a CefWindow that hosts a single CefBrowserView and optional
 // Views-based controls. All methods must be called on the browser process UI
 // thread.
+// 단일 CefBrowserView 혹은 선택적인 Views-기반 제어를 호스트하는 CefWindow 구현입니다.
 class ViewsWindow : public CefBrowserViewDelegate,
                     public CefMenuButtonDelegate,
                     public CefMenuModelDelegate,

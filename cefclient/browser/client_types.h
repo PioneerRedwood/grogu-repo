@@ -2,12 +2,11 @@
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 
+// updated 2021-12-16
+
 #ifndef CEF_TESTS_CEFCLIENT_BROWSER_CLIENT_TYPES_H_
 #define CEF_TESTS_CEFCLIENT_BROWSER_CLIENT_TYPES_H_
 #pragma once
-
-// updated 2021-12-15
-// 어떤 플랫폼을 사용하느냐에 따라 설정이 달라지는 헤더
 
 #include "include/cef_base.h"
 
